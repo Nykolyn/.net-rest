@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/anykolyn/Desktop/Projects/.net-rest/Catalog/Catalog.csproj": {}
+    "/Users/anykolyn/Desktop/Projects/.net-rest/Catalog.csproj": {}
   },
   "projects": {
-    "/Users/anykolyn/Desktop/Projects/.net-rest/Catalog/Catalog.csproj": {
+    "/Users/anykolyn/Desktop/Projects/.net-rest/Catalog.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/anykolyn/Desktop/Projects/.net-rest/Catalog/Catalog.csproj",
+        "projectUniqueName": "/Users/anykolyn/Desktop/Projects/.net-rest/Catalog.csproj",
         "projectName": "Catalog",
-        "projectPath": "/Users/anykolyn/Desktop/Projects/.net-rest/Catalog/Catalog.csproj",
+        "projectPath": "/Users/anykolyn/Desktop/Projects/.net-rest/Catalog.csproj",
         "packagesPath": "/Users/anykolyn/.nuget/packages/",
-        "outputPath": "/Users/anykolyn/Desktop/Projects/.net-rest/Catalog/obj/",
+        "outputPath": "/Users/anykolyn/Desktop/Projects/.net-rest/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/anykolyn/.nuget/NuGet/NuGet.Config"
