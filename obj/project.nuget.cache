@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "URD29IxgEpUkxCmC4ZbDdyxs0/xoSkuYRHuUXgzMdjFushZMcdLLszmWQrXoz1/cM1ZpWsLjgajYFPqnH32n+A==",
+  "dgSpecHash": "BO/dwGLV4niSkS+r3RvjpsE95aOrQCpktOwMKs9PwffS1bVlZ48rairl8omMM5/UxQZCanuJqPTC4sAJG8CJNg==",
   "success": true,
-  "projectFilePath": "/Users/anykolyn/Desktop/Projects/.net-rest/..csproj",
+  "projectFilePath": "/Users/anykolyn/Desktop/Projects/.net-rest/Catalog/Catalog.csproj",
   "expectedPackageFiles": [
     "/Users/anykolyn/.nuget/packages/microsoft.aspnetcore.openapi/7.0.4/microsoft.aspnetcore.openapi.7.0.4.nupkg.sha512",
     "/Users/anykolyn/.nuget/packages/microsoft.extensions.apidescription.server/6.0.5/microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
