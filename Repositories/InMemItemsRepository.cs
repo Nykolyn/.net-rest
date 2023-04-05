@@ -6,9 +6,9 @@ namespace Catalog.Repositories
     {
         private readonly List<Item> items = new()
         {
-            new Item (name: "Potion", price: 9),
-            new Item (name: "Iron Sword", price: 20),
-            new Item (name: "Bronze Shield", price: 19)
+            new Item (Name: "Potion", Price: 9, Id: Guid.NewGuid()),
+            new Item (Name: "Iron Sword", Price: 20,  Id: Guid.NewGuid()),
+            new Item (Name: "Bronze Shield", Price: 19, Id: Guid.NewGuid())
         };
 
         public IEnumerable<Item> GetItems()
@@ -20,7 +20,9 @@ namespace Catalog.Repositories
         {
             return items.Where(item => item.Id == id).SingleOrDefault();
         }
+
+        public void AddItem(Item item) {
+           items.Add(item);
+        }
     }
-
-
 }
