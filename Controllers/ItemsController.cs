@@ -16,15 +16,16 @@ namespace Catalog.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<ItemDto> GetItems()
+        public async Task<IEnumerable<ItemDto>> GetItems()
         {
-            return repository.GetItems().Select(item => item.AsDto());
+            var items = await repository.GetItemsAsync();
+            return items.Select(item => item.AsDto());
         }
 
         [HttpGet("{id}")]
-        public ActionResult<ItemDto>? GetItem(Guid id)
+        public async Task<ActionResult<ItemDto>>? GetItem(Guid id)
         {
-            var item = repository.GetItem(id);
+            var item = await repository.GetItemAsync(id);
 
             if (item is null)
             {
@@ -39,16 +40,16 @@ namespace Catalog.Controllers
         {
             Item item = new Item(Name: itemDto.Name, Price: itemDto.Price, Id: Guid.NewGuid());
 
-            repository.AddItem(item);
+            repository.AddItemAsync(item);
 
             return CreatedAtAction(nameof(GetItem), new { id = item.Id }, item.AsDto());
         }
 
         [HttpPut("{id}")]
-        public ActionResult UpdateItem(Guid id, UpdateItemDto itemDto)
+        public async Task<ActionResult> UpdateItem(Guid id, UpdateItemDto itemDto)
         {
 
-            var existingItem = repository.GetItem(id);
+            var existingItem = await repository.GetItemAsync(id);
 
             if (existingItem is null)
             {
@@ -61,7 +62,7 @@ namespace Catalog.Controllers
                 Price = itemDto.Price
             };
 
-            repository.UpdateItem(updatedItem);
+            await repository.UpdateItemAsync(updatedItem);
 
             return NoContent();
         }
@@ -70,15 +71,14 @@ namespace Catalog.Controllers
         public ActionResult DeleteItem(Guid id)
         {
 
-            var existingItem = repository.GetItem(id);
+            var existingItem = repository.GetItemAsync(id);
 
             if (existingItem is null)
             {
                 return NotFound();
             }
 
-
-            repository.DeleteItem(id);
+            repository.DeleteItemAsync(id);
 
             return NoContent();
         }
