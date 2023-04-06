@@ -16,14 +16,14 @@ namespace Catalog.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<ItemDto>> GetItems()
+        public async Task<IEnumerable<ItemDto>> GetItemsAsync()
         {
             var items = await repository.GetItemsAsync();
             return items.Select(item => item.AsDto());
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<ItemDto>>? GetItem(Guid id)
+        public async Task<ActionResult<ItemDto>>? GetItemAsync(Guid id)
         {
             var item = await repository.GetItemAsync(id);
 
@@ -36,17 +36,17 @@ namespace Catalog.Controllers
         }
 
         [HttpPost]
-        public ActionResult<ItemDto> CreateItem(CreateItemDto itemDto)
+        public ActionResult<ItemDto> CreateItemAsync(CreateItemDto itemDto)
         {
             Item item = new Item(Name: itemDto.Name, Price: itemDto.Price, Id: Guid.NewGuid());
 
             repository.AddItemAsync(item);
 
-            return CreatedAtAction(nameof(GetItem), new { id = item.Id }, item.AsDto());
+            return CreatedAtAction(nameof(GetItemAsync), new { id = item.Id }, item.AsDto());
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult> UpdateItem(Guid id, UpdateItemDto itemDto)
+        public async Task<ActionResult> UpdateItemAsync(Guid id, UpdateItemDto itemDto)
         {
 
             var existingItem = await repository.GetItemAsync(id);
@@ -68,7 +68,7 @@ namespace Catalog.Controllers
         }
 
         [HttpDelete("{id}")]
-        public ActionResult DeleteItem(Guid id)
+        public ActionResult DeleteItemAsync(Guid id)
         {
 
             var existingItem = repository.GetItemAsync(id);
