@@ -5,7 +5,7 @@ using Catalog.Entities;
 namespace Catalog.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("items")]
     public class ItemsController : ControllerBase
     {
         private readonly IItemsRepository repository;
@@ -55,12 +55,30 @@ namespace Catalog.Controllers
                 return NotFound();
             }
 
-            Item updatedItem = existingItem with {
+            Item updatedItem = existingItem with
+            {
                 Name = itemDto.Name,
                 Price = itemDto.Price
             };
 
             repository.UpdateItem(updatedItem);
+
+            return NoContent();
+        }
+
+        [HttpDelete("{id}")]
+        public ActionResult DeleteItem(Guid id)
+        {
+
+            var existingItem = repository.GetItem(id);
+
+            if (existingItem is null)
+            {
+                return NotFound();
+            }
+
+
+            repository.DeleteItem(id);
 
             return NoContent();
         }
