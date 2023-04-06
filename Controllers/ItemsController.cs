@@ -10,7 +10,7 @@ namespace Catalog.Controllers
     {
         private readonly IItemsRepository repository;
 
-        public ItemsController(IItemsRepository repository)
+         public ItemsController(IItemsRepository repository)
         {
             this.repository = repository;
         }
