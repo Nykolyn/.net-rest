@@ -1,6 +1,6 @@
 namespace Catalog.Entities
 {
-    public class Item
+    public record Item
     {
         private Func<Guid> id;
 

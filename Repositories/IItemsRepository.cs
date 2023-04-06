@@ -8,5 +8,7 @@ namespace Catalog.Repositories
         IEnumerable<Item> GetItems();
 
         void AddItem(Item item);
+
+        void UpdateItem(Item item);
     }
 }
