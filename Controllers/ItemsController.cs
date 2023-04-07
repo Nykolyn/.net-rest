@@ -21,6 +21,12 @@ namespace Catalog.Controllers
             return items.Select(item => item.AsDto());
         }
 
+        [HttpGet("/check")]
+        public string check()
+        {
+            return "Passed";
+        }
+
         [HttpGet("{id}")]
         public async Task<ActionResult<ItemDto>>? GetItemAsync(Guid id)
         {

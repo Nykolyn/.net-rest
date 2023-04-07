@@ -1,0 +1,26 @@
+version: "3"
+
+services:
+  catalog:
+    build: .
+    ports:
+      - "8080:80"
+    environment:
+      MongoDbSettings__Host: mongo
+      MongoDbSettings__Password: qweqweqwe
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo
+    container_name: mongo
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: mongoadmin
+      MONGO_INITDB_ROOT_PASSWORD: qweqweqwe
+    volumes:
+      - mongodbdata:/data/db
+
+volumes:
+  mongodbdata:

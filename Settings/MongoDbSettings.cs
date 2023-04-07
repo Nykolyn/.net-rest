@@ -19,6 +19,7 @@ namespace Catalog.Settings
         {
             get
             {
+                Console.WriteLine("test update console");
                 Console.WriteLine("Testing env " + Host + Port + User + Password);
                 return $"mongodb://{User}:{Password}@{Host}:{Port}";
             }
