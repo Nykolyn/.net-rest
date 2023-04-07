@@ -8,16 +8,6 @@ run:
     image: catalog
     ports:
       - "80:80"
-    environment:
-      MongoDbSettings__Host: mongo
-      MongoDbSettings__Password: qweqweqwe
     command: ["dotnet", "MyApp.dll"]
   db:
     image: mongo
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: mongoadmin
-      MONGO_INITDB_ROOT_PASSWORD: qweqweqwe
-    volumes:
-      - mongodbdata:/data/db
-volumes:
-  mongodbdata:
