@@ -10,6 +10,7 @@ var configuration = new ConfigurationBuilder()
     .AddJsonFile("appsettings.json")
     .Build();
 
+builder.Configuration.AddUserSecrets<MongoDbSettings>();
 // Add services to the container.
 builder.Services.AddControllers(options => {
     options.SuppressAsyncSuffixInActionNames = false;
@@ -17,10 +18,15 @@ builder.Services.AddControllers(options => {
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddSingleton<MongoDbSettings>(serviceProvider =>
+{
+    var configuration = serviceProvider.GetRequiredService<IConfiguration>();
+    return new MongoDbSettings(configuration.GetSection(nameof(MongoDbSettings)));
+});
 builder.Services.AddSingleton<IMongoClient>(serviceProvider =>
 {
-    var settings = configuration.GetSection(nameof(MongoDbSettings)).Get<MongoDbSettings>();
-    return new MongoClient(settings.ConnectionString);
+    var mongoDbSettings = serviceProvider.GetRequiredService<MongoDbSettings>();
+    return new MongoClient(mongoDbSettings.ConnectionString);
 });
 builder.Services.AddSingleton<IItemsRepository, MongoDbItemsRepository>();
 
