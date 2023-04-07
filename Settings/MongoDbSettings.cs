@@ -1,5 +1,3 @@
-using Microsoft.Extensions.Configuration;
-using System;
 
 namespace Catalog.Settings
 {
@@ -21,7 +19,7 @@ namespace Catalog.Settings
         {
             get
             {
-                Console.WriteLine($"Test variables {User} {Password} {Host} {Port}");
+                Console.WriteLine("Testing env " + Host + Port + User + Password);
                 return $"mongodb://{User}:{Password}@{Host}:{Port}";
             }
         }

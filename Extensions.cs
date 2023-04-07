@@ -1,4 +1,3 @@
-using Catalog.Entities;
 using Catalog.Dtos;
 
 namespace Catalog
@@ -11,7 +10,10 @@ namespace Catalog
             {
                 Id = item.Id,
                 Name = item.Name,
-                Price = item.Price,
+                Text = item.Text,
+                Parameter = item.Parameter,
+                Color = item.Color,
+                Position = item.Position,
                 CreatedDate = item.CreatedDate
             };
         }

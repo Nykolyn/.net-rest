@@ -1,4 +1,3 @@
-using Catalog.Entities;
 using MongoDB.Bson;
 using MongoDB.Driver;
 

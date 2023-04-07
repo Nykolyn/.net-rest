@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Catalog.Repositories;
 using Catalog.Dtos;
-using Catalog.Entities;
 namespace Catalog.Controllers
 {
     [ApiController]
@@ -10,7 +9,7 @@ namespace Catalog.Controllers
     {
         private readonly IItemsRepository repository;
 
-         public ItemsController(IItemsRepository repository)
+        public ItemsController(IItemsRepository repository)
         {
             this.repository = repository;
         }
@@ -38,17 +37,16 @@ namespace Catalog.Controllers
         [HttpPost]
         public ActionResult<ItemDto> CreateItemAsync(CreateItemDto itemDto)
         {
-            Item item = new Item(Name: itemDto.Name, Price: itemDto.Price, Id: Guid.NewGuid());
+            Item item = new Item(Id: Guid.NewGuid(), Name: itemDto.Name, Text: itemDto.Text, Parameter: itemDto.Parameter, Color: itemDto.Color, Position: itemDto.Position);
 
             repository.AddItemAsync(item);
 
             return CreatedAtAction(nameof(GetItemAsync), new { id = item.Id }, item.AsDto());
         }
 
-        [HttpPut("{id}")]
-        public async Task<ActionResult> UpdateItemAsync(Guid id, UpdateItemDto itemDto)
+        [HttpPatch("{id}")]
+        public async Task<ActionResult<ItemDto>> UpdateItemAsync(Guid id, UpdateItemDto patchDoc)
         {
-
             var existingItem = await repository.GetItemAsync(id);
 
             if (existingItem is null)
@@ -56,15 +54,32 @@ namespace Catalog.Controllers
                 return NotFound();
             }
 
-            Item updatedItem = existingItem with
+            var itemDto = new UpdateItemDto()
+            {
+                Name = existingItem.Name,
+                Position = existingItem.Position,
+                Parameter = existingItem.Parameter,
+                Text = existingItem.Text,
+                Color = existingItem.Color
+            };
+
+            if (!TryValidateModel(itemDto))
+            {
+                return BadRequest(ModelState);
+            }
+
+            var updatedItem = existingItem with
             {
                 Name = itemDto.Name,
-                Price = itemDto.Price
+                Position = itemDto.Position,
+                Parameter = itemDto.Parameter,
+                Text = itemDto.Text,
+                Color = itemDto.Color
             };
 
             await repository.UpdateItemAsync(updatedItem);
 
-            return NoContent();
+            return updatedItem.AsDto();
         }
 
         [HttpDelete("{id}")]
