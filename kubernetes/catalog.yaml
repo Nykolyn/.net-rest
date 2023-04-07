@@ -24,10 +24,7 @@ spec:
             - name: MongoDbSettings__Host
               value: mongodb-service
             - name: MongoDbSettings__Password
-              valueFrom:
-                secretKeyRef:
-                  name: catalog-secrets
-                  key: mongodb-password
+              value: qweqweqwe
 
 ---
 apiVersion: v1
