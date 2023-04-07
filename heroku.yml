@@ -1,13 +1,5 @@
-setup:
-  config: {}
 build:
   docker:
     web: Dockerfile
 run:
-  web: 
-    image: catalog
-    ports:
-      - "80:80"
-    command: ["dotnet", "MyApp.dll"]
-  db:
-    image: mongo
+  web: docker-compose up
